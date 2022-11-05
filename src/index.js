@@ -8,6 +8,7 @@ import App from "./App";
 import Expenses from "./routes/expenses"; // import expenses
 import Invoices from "./routes/invoices"; // import invoices
 import Invoice from "./routes/invoice"; // import invoice
+import Expense from "./routes/expense"; // import expense
 const root = ReactDOM.createRoot(
   document.getElementById("root")
 );
@@ -17,7 +18,17 @@ root.render(
       {/* nest route */}
       <Route path="/" element={<App />} >
         {/* add expenses component */}
-        <Route path="expenses" element={<Expenses />} />
+        <Route path="expenses" element={<Expenses />} >
+          <Route
+              index
+              element={
+                <main style={{ padding: "1rem" }}>
+                  <p>Select an expense</p>
+                </main>
+              }
+            />
+          <Route path=":expenseId" element={<Expense />} />
+        </Route>
         {/* add invoices component */}
         <Route path="invoices" element={<Invoices />} >
           <Route
